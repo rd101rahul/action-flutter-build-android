@@ -48,6 +48,10 @@ runs:
             echo "installed=false" >> "$GITHUB_OUTPUT"
         fi
 
+    - name: Create .env file
+      shell: bash
+      run: echo "${{ secrets.ENV_FILE_CONTENT }}" > .env
+
     - name: Setup flutter
       if: steps.check_flutter.outputs.installed == 'false'
       uses: subosito/flutter-action@v2
